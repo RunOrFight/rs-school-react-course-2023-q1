@@ -1,13 +1,17 @@
 import { Card } from 'components';
-import React, { FC } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IProduct } from 'types';
 import css from './style.module.css';
 
-interface ICardListProps {
-  products: IProduct[];
-}
+const CardList = () => {
+  const [products, setProducts] = useState<IProduct[]>([]);
 
-const CardList: FC<ICardListProps> = ({ products }) => {
+  useEffect(() => {
+    fetch('https://dummyjson.com/products')
+      .then((res) => res.json())
+      .then((json) => setProducts(json.products));
+  }, []);
+
   return (
     <div className={css.container}>
       {products.map((product) => (
