@@ -12,6 +12,9 @@ const Layout = () => {
         <NavLink to="/about" className={css.link}>
           About us
         </NavLink>
+        <NavLink to="/form" className={css.link}>
+          Form
+        </NavLink>
       </header>
       <Outlet />
     </>

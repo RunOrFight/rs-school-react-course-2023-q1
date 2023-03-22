@@ -19,3 +19,12 @@ a {
   text-decoration: none;
   color: black;
 }
+
+fieldset {
+  border: none;
+  margin-inline: 0;
+  padding-inline: 0;
+  padding-block: 0;
+  margin: 0;
+  padding: 0;
+}
