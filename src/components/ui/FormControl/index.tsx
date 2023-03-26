@@ -1,9 +1,8 @@
 import React, { FC, PropsWithChildren } from 'react';
-import css from './style.module.css';
 
 const FormControl: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <fieldset role="group" className={css.container}>
+    <fieldset role="group" className="w-full flex items-start flex-col relative">
       {children}
     </fieldset>
   );

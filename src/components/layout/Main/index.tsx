@@ -4,7 +4,7 @@ import css from './style.module.css';
 
 const Layout = () => {
   return (
-    <>
+    <div className="w-screen box-border">
       <header className={css.header}>
         <NavLink to="/" className={css.link}>
           Home
@@ -17,7 +17,7 @@ const Layout = () => {
         </NavLink>
       </header>
       <Outlet />
-    </>
+    </div>
   );
 };
 

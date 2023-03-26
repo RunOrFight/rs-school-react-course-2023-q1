@@ -1,9 +1,9 @@
 .container {
+  cursor: pointer;
   display: inline-flex;
   -webkit-box-align: center;
   align-items: center;
   vertical-align: top;
-  cursor: pointer;
   position: relative;
 }
 
@@ -25,19 +25,21 @@
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
+  vertical-align: top;
+  user-select: none;
   flex-shrink: 0;
   width: 1rem;
   height: 1rem;
   border-width: 2px;
   border-style: solid;
   border-image: initial;
-  border-radius: 50%;
+  border-radius: 0.125rem;
   border-color: inherit;
   color: black;
+  --checkbox-size: 1rem;
+  margin-right: 0.5rem;
 }
 
 .label {
-  user-select: none;
-  margin-inline-start: 0.5rem;
   font-size: 1rem;
 }

@@ -6,3 +6,5 @@ export { default as FormLabel } from './FormLabel';
 export { default as Select } from './Select';
 export { default as RadioGroup } from './RadioGroup';
 export { default as Radio } from './Radio';
+export { default as Checkbox } from './Checkbox';
+export { default as Button } from './Button';

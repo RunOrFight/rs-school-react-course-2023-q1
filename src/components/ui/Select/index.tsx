@@ -1,12 +1,18 @@
-import React, { FC, PropsWithChildren } from 'react';
+import React, { FC, RefObject, SelectHTMLAttributes } from 'react';
 import css from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-const Select: FC<PropsWithChildren> = ({ children }) => {
+interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  inputRef: RefObject<HTMLSelectElement>;
+}
+
+const Select: FC<ISelectProps> = ({ children, inputRef, ...props }) => {
   return (
     <div className={css.container}>
-      <select className={css.select}>{children}</select>
+      <select ref={inputRef} className={css.select} {...props}>
+        {children}
+      </select>
       <div className={css.icon}>
         <FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>
       </div>
