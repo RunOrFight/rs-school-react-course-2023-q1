@@ -1,0 +1,9 @@
+.label {
+  display: block;
+  text-align: start;
+  font-size: medium;
+  margin-inline-end: 12px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  opacity: 1;
+}

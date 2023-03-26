@@ -1,0 +1,12 @@
+.header {
+  height: 70px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.link {
+  color: white;
+}
