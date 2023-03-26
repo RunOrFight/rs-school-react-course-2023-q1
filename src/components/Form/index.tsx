@@ -78,6 +78,10 @@ class Form extends Component<IFormProps, IFormState> {
     });
 
     this.clearForm();
+
+    setTimeout(() => {
+      alert('Data has been saved!');
+    }, 0);
   };
 
   clearForm() {
