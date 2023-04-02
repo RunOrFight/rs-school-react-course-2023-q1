@@ -7,7 +7,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   return (
     <div>
       <input type="radio" className="mr-2" {...rest} ref={ref} />
-      <span>{children}</span>
+      <label id={rest['aria-labelledby']}>{children}</label>
     </div>
   );
 });

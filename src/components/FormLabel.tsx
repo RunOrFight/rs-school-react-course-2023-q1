@@ -1,7 +1,13 @@
-import React, { FC, PropsWithChildren } from 'react';
+import React, { FC, LabelHTMLAttributes } from 'react';
 
-const FormLabel: FC<PropsWithChildren> = ({ children }) => {
-  return <label className="text-xl font-thin mb-1">{children}</label>;
+type FormLabelProps = LabelHTMLAttributes<HTMLLabelElement>;
+
+const FormLabel: FC<FormLabelProps> = ({ children, ...props }) => {
+  return (
+    <label className="text-xl font-thin mb-1" {...props}>
+      {children}
+    </label>
+  );
 };
 
 export default FormLabel;

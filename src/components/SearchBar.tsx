@@ -12,7 +12,7 @@ const SearchBar = () => {
   }, [inputValue]);
 
   return (
-    <div className="flex border w-fit p-4">
+    <div className="flex border w-fit p-4" role="searchbox">
       <input
         type="text"
         name="search"

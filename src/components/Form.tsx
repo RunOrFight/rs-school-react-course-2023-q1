@@ -13,7 +13,6 @@ import { GENRES } from 'constants/genre';
 import React, { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IAudio } from 'types';
-import { getBase64 } from 'utils';
 
 interface IFormProps {
   addAudio: (newAudio: Omit<IAudio, 'id'>) => void;
@@ -42,10 +41,8 @@ const Form: FC<IFormProps> = ({ addAudio }) => {
   });
 
   const onSubmit: SubmitHandler<onSubmitData> = async (data) => {
-    let cover = 'https://picsum.photos/200/300';
-    if (data.cover?.[0]) {
-      cover = await getBase64(data.cover[0]);
-    }
+    const cover = 'https://picsum.photos/200/300';
+
     addAudio({ ...data, cover });
     reset(defaultValues);
     setTimeout(() => {
@@ -59,24 +56,24 @@ const Form: FC<IFormProps> = ({ addAudio }) => {
       <div className="flex gap-4 mb-6">
         <div className="w-1/2 flex flex-col gap-2">
           <FormControl>
-            <FormLabel>Title</FormLabel>
-            <Input type="text" aria-label="Title" {...register('title', { required: true })} />
+            <FormLabel id="title">Title</FormLabel>
+            <Input aria-labelledby="title" type="text" {...register('title', { required: true })} />
             {errors.title && <FormErrorMessage>Type a title</FormErrorMessage>}
           </FormControl>
           <FormControl>
-            <FormLabel>Performer</FormLabel>
+            <FormLabel id="performer">Performer</FormLabel>
             <Input
               type="text"
-              aria-label="{erformer"
+              aria-labelledby="performer"
               {...register('performer', { required: true })}
             />
             {errors.performer && <FormErrorMessage>Type a Performer</FormErrorMessage>}
           </FormControl>
           <FormControl>
-            <FormLabel>Release Date</FormLabel>
+            <FormLabel id="releaseDate">Release Date</FormLabel>
             <Input
               {...register('releaseDate', { valueAsDate: true, required: true })}
-              aria-label="Release Date"
+              aria-labelledby="releaseDate"
               type="date"
             />
             {errors.releaseDate && <FormErrorMessage>Select a date</FormErrorMessage>}
@@ -84,8 +81,8 @@ const Form: FC<IFormProps> = ({ addAudio }) => {
         </div>
         <div className="w-1/2 flex flex-col gap-2">
           <FormControl>
-            <FormLabel>Genre:</FormLabel>
-            <Select {...register('genre', { required: true })} aria-label="Genre">
+            <FormLabel id="genre">Genre</FormLabel>
+            <Select {...register('genre', { required: true })} aria-labelledby="genre">
               {GENRES.map((genre) => (
                 <option key={`genre_${genre}`} value={genre}>
                   {genre.toUpperCase()}
@@ -95,31 +92,35 @@ const Form: FC<IFormProps> = ({ addAudio }) => {
             {errors.genre && <FormErrorMessage>Select a genre</FormErrorMessage>}
           </FormControl>
           <FormControl>
-            <FormLabel>Record Quality:</FormLabel>
+            <FormLabel id="recordQuality">Record Quality</FormLabel>
             <RadioGroup>
               <Radio
                 value="studio"
-                aria-label="Studio"
+                aria-labelledby="studio"
                 {...register('recordQuality', { required: true })}
               >
                 Studio
               </Radio>
+
               <Radio
                 value="amateur"
-                aria-label="Amateur"
+                aria-labelledby="amateur"
                 {...register('recordQuality', { required: true })}
               >
                 Amateur
               </Radio>
+              <label id="amateur"></label>
             </RadioGroup>
             {errors.recordQuality && <FormErrorMessage>Select a record quality</FormErrorMessage>}
           </FormControl>
           <FormControl>
-            <FormLabel>Cover:</FormLabel>
+            <FormLabel id="cover">Cover</FormLabel>
             <Input
               type="file"
-              aria-label="Cover"
-              {...register('cover', { required: true })}
+              aria-labelledby="cover"
+              {...register('cover', {
+                validate: (value: FileList | null) => !!value && value?.length > 0,
+              })}
             ></Input>
             {errors.cover && <FormErrorMessage>Select a cover</FormErrorMessage>}
           </FormControl>
@@ -129,9 +130,8 @@ const Form: FC<IFormProps> = ({ addAudio }) => {
       <FormControl>
         <div style={{ display: 'flex', gap: '10px' }}>
           <Button>Submit</Button>
-
           <Checkbox
-            aria-label="Public"
+            aria-labelledby="public"
             {...register('isPublic', {
               validate: (value) => value,
             })}
