@@ -1,4 +1,4 @@
-import { SearchBar } from 'components/ui';
+import { SearchBar } from 'components';
 import { AudioCardList } from 'components';
 import React from 'react';
 import { IAudio } from 'types';
@@ -28,9 +28,9 @@ const Home = () => {
   ];
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="p-5">
       <SearchBar />
-      <div style={{ height: '20px' }}></div>
+      <div className="h-5"></div>
       <AudioCardList audios={audios} />
     </div>
   );

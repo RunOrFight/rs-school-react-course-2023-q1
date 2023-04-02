@@ -1,18 +1,17 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import css from './style.module.css';
 
 const Layout = () => {
   return (
     <div className="w-screen box-border">
-      <header className={css.header}>
-        <NavLink to="/" className={css.link}>
+      <header className="flex h-20 bg-green-500 items-center justify-center gap-5">
+        <NavLink to="/" className="text-xl font-semibold text-white">
           Home
         </NavLink>
-        <NavLink to="/about" className={css.link}>
+        <NavLink to="/about" className="text-xl font-semibold text-white">
           About us
         </NavLink>
-        <NavLink to="/form" className={css.link}>
+        <NavLink to="/form" className="text-xl font-semibold text-white">
           Form
         </NavLink>
       </header>
