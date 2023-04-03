@@ -13,6 +13,7 @@ import { GENRES } from 'constants/genre';
 import React, { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IAudio } from 'types';
+import { getBase64 } from 'utils';
 
 interface IFormProps {
   addAudio: (newAudio: Omit<IAudio, 'id'>) => void;
@@ -41,7 +42,11 @@ const Form: FC<IFormProps> = ({ addAudio }) => {
   });
 
   const onSubmit: SubmitHandler<onSubmitData> = async (data) => {
-    const cover = 'https://picsum.photos/200/300';
+    let cover = 'https://picsum.photos/200/300';
+
+    if (data.cover?.[0]) {
+      cover = await getBase64(data.cover[0]);
+    }
 
     addAudio({ ...data, cover });
     reset(defaultValues);

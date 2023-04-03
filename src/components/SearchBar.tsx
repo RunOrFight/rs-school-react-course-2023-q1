@@ -7,9 +7,7 @@ const SearchBar = () => {
   const initValue = localStorage.getItem(LOCAL_STORAGE_KEY.SEARCH);
   const [inputValue, setInputValue] = useState(initValue || '');
 
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY.SEARCH, inputValue!);
-  }, [inputValue]);
+  useEffect(() => localStorage.setItem(LOCAL_STORAGE_KEY.SEARCH, inputValue!));
 
   return (
     <div className="flex border w-fit p-4" role="searchbox">

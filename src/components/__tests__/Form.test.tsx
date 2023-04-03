@@ -33,9 +33,18 @@ test('should call addAudio and reset with the correct arguments when form is sub
   fireEvent.click(publicCheckbox);
   const submitButton = screen.getByRole('button', { name: /submit/i });
 
-  await act(async () => {
-    fireEvent.click(submitButton);
+  jest.mock('../../utils', () => {
+    return {
+      __esModule: true,
+      default: jest.fn(() => 'Default'),
+    };
   });
 
-  expect(mockAddAudio).toHaveBeenCalled();
+  await act(async () => {
+    await fireEvent.click(submitButton);
+    await new Promise((res) => {
+      setTimeout(() => res(100), 2000);
+    });
+    expect(mockAddAudio).toHaveBeenCalled();
+  });
 });
