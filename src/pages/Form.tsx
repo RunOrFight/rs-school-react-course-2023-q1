@@ -1,33 +1,22 @@
 import { AudioCardList, Form } from 'components';
-import React, { Component, ReactNode } from 'react';
+import React, { useState } from 'react';
 import { IAudio } from 'types';
 
-interface IFormPageState {
-  audios: IAudio[];
-}
-class FormPage extends Component<Record<string, never>, IFormPageState> {
-  constructor(props: Record<string, never>) {
-    super(props);
-    this.state = {
-      audios: [],
-    };
-    this.addAudio = this.addAudio.bind(this);
-  }
+const FormPage = () => {
+  const [audios, setAudios] = useState<IAudio[]>([]);
 
-  addAudio(newAudio: Omit<IAudio, 'id'>) {
-    this.setState((state) => ({
-      audios: [...state.audios, { id: state.audios.length + 1, ...newAudio }],
-    }));
-  }
+  const addAudio = (newAudio: Omit<IAudio, 'id'>) => {
+    setAudios((prev) => {
+      return [...prev, { ...newAudio, id: prev.length + 1 }];
+    });
+  };
 
-  render(): ReactNode {
-    return (
-      <div className="p-4">
-        <Form addAudio={this.addAudio}></Form>
-        <AudioCardList audios={this.state.audios} />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="p-4">
+      <Form addAudio={addAudio}></Form>
+      <AudioCardList audios={audios} />
+    </div>
+  );
+};
 
 export default FormPage;

@@ -1,36 +1,36 @@
-import { SearchBar } from 'components/ui';
+import { SearchBar } from 'components';
 import { AudioCardList } from 'components';
 import React from 'react';
 import { IAudio } from 'types';
 
-const Home = () => {
-  const audios: IAudio[] = [
-    {
-      id: 1,
-      genre: 'techno',
-      isPublic: false,
-      performer: 'Walter White',
-      recordQuality: 'studio',
-      releaseDate: new Date(),
-      title: 'Audio 1',
-      cover: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 2,
-      genre: 'techno',
-      isPublic: true,
-      performer: 'Walter White',
-      recordQuality: 'amateur',
-      releaseDate: new Date(),
-      title: 'Audio 2',
-      cover: 'https://picsum.photos/200/300',
-    },
-  ];
+const audios: IAudio[] = [
+  {
+    id: 1,
+    genre: 'techno',
+    isPublic: false,
+    performer: 'Walter White',
+    recordQuality: 'studio',
+    releaseDate: new Date(),
+    title: 'Audio 1',
+    cover: 'https://picsum.photos/200/300',
+  },
+  {
+    id: 2,
+    genre: 'techno',
+    isPublic: true,
+    performer: 'Walter White',
+    recordQuality: 'amateur',
+    releaseDate: new Date(),
+    title: 'Audio 2',
+    cover: 'https://picsum.photos/200/300',
+  },
+];
 
+const Home = () => {
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="p-5">
       <SearchBar />
-      <div style={{ height: '20px' }}></div>
+      <div className="h-5"></div>
       <AudioCardList audios={audios} />
     </div>
   );

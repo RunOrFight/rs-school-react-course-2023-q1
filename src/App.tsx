@@ -1,19 +1,18 @@
 import React from 'react';
-import './App.css';
 
 import { Routes, Route } from 'react-router-dom';
 import { AboutPage, FormPage, HomePage, NotFoundPage } from 'pages';
-import { MainLayout } from 'components/layout';
+import { MainLayout } from 'layouts';
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<MainLayout />}>
-          <Route index element={<HomePage />}></Route>
-          <Route path="about" element={<AboutPage />}></Route>
-          <Route path="form" element={<FormPage />}></Route>
-          <Route path="*" element={<NotFoundPage />}></Route>
+          <Route index element={<HomePage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="form" element={<FormPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </>
