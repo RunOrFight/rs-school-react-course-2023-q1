@@ -4,8 +4,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { LOCAL_STORAGE_KEY } from '../constants';
 
 const SearchBar = () => {
-  const initValue = localStorage.getItem(LOCAL_STORAGE_KEY.SEARCH || '');
-  const [inputValue, setInputValue] = useState(initValue);
+  const initValue = localStorage.getItem(LOCAL_STORAGE_KEY.SEARCH);
+  const [inputValue, setInputValue] = useState(initValue || '');
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY.SEARCH, inputValue!);

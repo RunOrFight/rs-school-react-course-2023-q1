@@ -8,7 +8,7 @@ interface IAudioCardListProps {
 
 const AudioCardList: FC<IAudioCardListProps> = ({ audios }) => {
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap gap-4" role="list">
       {audios.map((audio) => (
         <AudioCard key={audio.id} audio={audio} />
       ))}
