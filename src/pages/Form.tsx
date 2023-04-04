@@ -1,4 +1,4 @@
-import { AudioCardList, Form } from 'components';
+import { AudioCard, CardList, Form } from 'components';
 import React, { useState } from 'react';
 import { IAudio } from 'types';
 
@@ -14,7 +14,11 @@ const FormPage = () => {
   return (
     <div className="p-4">
       <Form addAudio={addAudio}></Form>
-      <AudioCardList audios={audios} />
+      <CardList>
+        {audios.map((audio) => (
+          <AudioCard key={audio.id} audio={audio} />
+        ))}
+      </CardList>
     </div>
   );
 };

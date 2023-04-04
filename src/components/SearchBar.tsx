@@ -1,25 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { LOCAL_STORAGE_KEY } from '../constants';
 
-const SearchBar = () => {
-  const initValue = localStorage.getItem(LOCAL_STORAGE_KEY.SEARCH);
-  const [inputValue, setInputValue] = useState(initValue || '');
+interface SearchBarProps {
+  searchValue?: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
+  isLoading?: boolean;
+}
 
-  useEffect(() => localStorage.setItem(LOCAL_STORAGE_KEY.SEARCH, inputValue!));
+const SearchBar: FC<SearchBarProps> = ({ setSearchValue, searchValue = '', isLoading = false }) => {
+  useEffect(() => () => localStorage.setItem(LOCAL_STORAGE_KEY.SEARCH, searchValue!));
 
   return (
-    <div className="flex border w-fit p-4" role="searchbox">
+    <div className="flex border w-full h-full p-4 bg-white rounded-3xl text-3xl" role="searchbox">
       <input
+        className="w-full h-full bg-inherit font-semibold "
         type="text"
         name="search"
         placeholder="Search for..."
-        onChange={(e) => setInputValue(e.target.value)}
-        value={inputValue!}
+        onChange={(e) => setSearchValue(e.target.value)}
+        value={searchValue!}
       ></input>
-      <button className="" type="submit">
-        <FontAwesomeIcon icon={faSearch} />
+      <button type="button">
+        {
+          <FontAwesomeIcon
+            className={isLoading ? 'animate-spin' : ''}
+            icon={isLoading ? faSpinner : faSearch}
+          />
+        }
       </button>
     </div>
   );
