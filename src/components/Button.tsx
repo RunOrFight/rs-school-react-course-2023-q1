@@ -6,11 +6,14 @@ interface IButtonProperties extends PropsWithChildren {
 
 const Button: FC<IButtonProperties> = ({ children, variant = 'solid' }) => {
   const styleConfig = {
-    solid: 'bg-green-500 text-white',
+    solid: 'bg-green-600 text-white',
     outline: 'border-green-500 text-green-500',
   };
   return (
-    <button role="button" className={`h-12 w-32 rounded-lg ${styleConfig[variant]}`}>
+    <button
+      role="button"
+      className={`hover:opacity-90 active:opacity-75 font-semibold rounded-[36px] h-10 w-32 ${styleConfig[variant]}`}
+    >
       {children}
     </button>
   );

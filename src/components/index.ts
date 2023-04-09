@@ -1,5 +1,5 @@
 export { default as AudioCard } from './AudioCard';
-export { default as AudioCardList } from './AudioCardList';
+export { default as CardList } from './CardList';
 export { default as Form } from './Form';
 export { default as SearchBar } from './SearchBar';
 export { default as FormControl } from './FormControl';
@@ -12,3 +12,5 @@ export { default as Radio } from './Radio';
 export { default as Checkbox } from './Checkbox';
 export { default as Button } from './Button';
 export { default as FormErrorMessage } from './FormErrorMessage';
+export { default as CharacterCard } from './CharacterCard';
+export { default as Window } from './Window';
