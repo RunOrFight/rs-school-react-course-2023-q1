@@ -1,21 +1,22 @@
 import { AudioCard, CardList, Form } from 'components';
-import React, { useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import React from 'react';
+import { addFormSubmitions } from 'store';
 import { IAudio } from 'types';
 
 const FormPage = () => {
-  const [audios, setAudios] = useState<IAudio[]>([]);
+  const formSubmitions = useAppSelector((state) => state.form.submitions);
+  const dispatch = useAppDispatch();
 
   const addAudio = (newAudio: Omit<IAudio, 'id'>) => {
-    setAudios((prev) => {
-      return [...prev, { ...newAudio, id: prev.length + 1 }];
-    });
+    dispatch(addFormSubmitions(newAudio));
   };
 
   return (
     <div className="p-4">
       <Form addAudio={addAudio}></Form>
       <CardList>
-        {audios.map((audio) => (
+        {formSubmitions.map((audio) => (
           <AudioCard key={audio.id} audio={audio} />
         ))}
       </CardList>
