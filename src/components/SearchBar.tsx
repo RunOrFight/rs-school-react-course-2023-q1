@@ -1,16 +1,24 @@
-import React, { Dispatch, FC, SetStateAction, useEffect } from 'react';
+import React, { FC, KeyboardEventHandler, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { LOCAL_STORAGE_KEY } from '../constants';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { setSearchText } from 'store';
 
 interface SearchBarProps {
-  searchValue?: string;
-  setSearchValue: Dispatch<SetStateAction<string>>;
   isLoading?: boolean;
 }
 
-const SearchBar: FC<SearchBarProps> = ({ setSearchValue, searchValue = '', isLoading = false }) => {
-  useEffect(() => () => localStorage.setItem(LOCAL_STORAGE_KEY.SEARCH, searchValue!));
+const SearchBar: FC<SearchBarProps> = ({ isLoading = false }) => {
+  const searchText = useAppSelector((state) => state.search.text);
+  const [value, setValue] = useState(searchText);
+  const dispatch = useAppDispatch();
+
+  const onKeyDown: KeyboardEventHandler<HTMLDivElement> = (e) => {
+    if (e.key !== 'Enter') {
+      return;
+    }
+    dispatch(setSearchText(value));
+  };
 
   return (
     <div className="flex border w-full h-full p-4 bg-white rounded-3xl text-3xl" role="searchbox">
@@ -19,8 +27,9 @@ const SearchBar: FC<SearchBarProps> = ({ setSearchValue, searchValue = '', isLoa
         type="text"
         name="search"
         placeholder="Search for..."
-        onChange={(e) => setSearchValue(e.target.value)}
-        value={searchValue!}
+        onKeyDown={onKeyDown}
+        onChange={(e) => setValue(e.target.value)}
+        value={value}
       ></input>
       <button type="button">
         {
